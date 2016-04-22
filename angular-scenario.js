@@ -9190,7 +9190,7 @@ return jQuery;
 }));
 
 /**
- * @license AngularJS v1.5.5-local+sha.05b6547
+ * @license AngularJS v1.5.6-local+sha.8c9fcd3
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -9249,7 +9249,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message += '\nhttp://errors.angularjs.org/1.5.5-local+sha.05b6547/' +
+    message += '\nhttp://errors.angularjs.org/1.5.6-local+sha.8c9fcd3/' +
       (module ? module + '/' : '') + code;
 
     for (i = SKIP_INDEXES, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
@@ -11671,10 +11671,10 @@ function toDebugString(obj) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.5.5-local+sha.05b6547',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.5.6-local+sha.8c9fcd3',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 5,
-  dot: 5,
+  dot: 6,
   codeName: 'snapshot'
 };
 
@@ -28450,16 +28450,11 @@ function urlResolve(url, base) {
 	}
 
 	urlParsingNode.setAttribute('href', href);
-	
-	/* REV EDIT:
-	 * Fix pathname parsing...
-	 */
-	if( href.match(/^https?:\/\/(?:[^:@\/]+(?::[^@\/]+)?@)?([\w|\-|\.]+)(?::\d+)?(?:\/.*)?$/) !== null ) {
+	if (typeof href === "string" && href.match(/^https?:\/\/(?:[^:@\/]+(?::[^@\/]+)?@)?([\w|\-|\.]+)(?::\d+)?(?:\/.*)?$/) !== null) {
 		var parts = href.match(/^https?:\/\/(?:[^:@\/]+(?::[^@\/]+)?@)?([\w|\-|\.]+)(?::\d+)?(\/.*)?$/);
 		urlParsingNode.host = parts[1];
 		urlParsingNode.pathname = parts[2];
 	}
-	/* END EDIT */
 
 	// urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
 	return {
@@ -28470,9 +28465,7 @@ function urlResolve(url, base) {
 		hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
 		hostname: urlParsingNode.hostname,
 		port: urlParsingNode.port,
-		pathname: (urlParsingNode.pathname.charAt(0) === '/')
-		  ? urlParsingNode.pathname
-		  : '/' + urlParsingNode.pathname
+		pathname: (urlParsingNode.pathname.charAt(0) === '/') ? urlParsingNode.pathname : '/' + urlParsingNode.pathname
 	};
 }
 
