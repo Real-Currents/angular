@@ -57,10 +57,13 @@ functions.</li>
 <li><strong>config</strong> – <code>{Object}</code> – The configuration object that was used to generate the request.</li>
 <li><strong>statusText</strong> – <code>{string}</code> – HTTP status text of the response.</li>
 </ul>
-<p>A response status code between 200 and 299 is considered a success status and
-will result in the success callback being called. Note that if the response is a redirect,
-XMLHttpRequest will transparently follow it, meaning that the error callback will not be
-called for such responses.</p>
+<p>A response status code between 200 and 299 is considered a success status and will result in
+the success callback being called. Any response status code outside of that range is
+considered an error status and will result in the error callback being called.
+Also, status codes less than -1 are normalized to zero. -1 usually means the request was
+aborted, e.g. using a <code>config.timeout</code>.
+Note that if the response is a redirect, XMLHttpRequest will transparently follow it, meaning
+that the outcome (success or error) will be determined by the final response status code.</p>
 <h2 id="shortcut-methods">Shortcut methods</h2>
 <p>Shortcut methods are also available. All shortcut methods require passing in the URL, and
 request data must be passed in for POST/PUT requests. An optional config can be passed as the
@@ -169,7 +172,7 @@ into JSON format.</li>
 <li>If JSON response is detected, deserialize it using a JSON parser.</li>
 </ul>
 <h3 id="overriding-the-default-transformations-per-request">Overriding the Default Transformations Per Request</h3>
-<p>If you wish override the request/response transformations only for a single request then provide
+<p>If you wish to override the request/response transformations only for a single request then provide
 <code>transformRequest</code> and/or <code>transformResponse</code> properties on the configuration object passed
 into <code>$http</code>.</p>
 <p>Note that if you provide these properties on the config object the default transformations will be
@@ -205,7 +208,7 @@ precedence over the default cache value.</p>
 <li>cache a specific response - set config.cache value to TRUE or to a cache object</li>
 </ul>
 <p>If caching is enabled, but neither the default cache nor config.cache are set to a cache object,
-then the default <code>$cacheFactory($http)</code> object is used.</p>
+then the default <code>$cacheFactory(&quot;$http&quot;)</code> object is used.</p>
 <p>The default cache value can be set by updating the
 <a href="api/ng/service/$http#defaults"><code>$http.defaults.cache</code></a> property or the
 <a href="api/ng/provider/$httpProvider#defaults"><code>$httpProvider.defaults.cache</code></a> property.</p>
@@ -681,7 +684,9 @@ for more information.</li>
     <h3><p><code>jsonp(url, [config]);</code></p>
 
 </h3>
-    <div><p>Shortcut method to perform <code>JSONP</code> request.</p>
+    <div><p>Shortcut method to perform <code>JSONP</code> request.
+If you would like to customise where and how the callbacks are stored then try overriding
+or decorating the <a href="api/ng/service/$jsonpCallbacks"><code>$jsonpCallbacks</code></a> service.</p>
 </div>
 
     
@@ -1050,10 +1055,10 @@ default headers, withCredentials as well as request and response transformations
   <h2 id="example">Example</h2><p>
 
 <div>
-  <plnkr-opener example-path="examples/example-example107"></plnkr-opener>
+  <plnkr-opener example-path="examples/example-example104"></plnkr-opener>
 
   <div class="runnable-example"
-      path="examples/example-example107"
+      path="examples/example-example104"
       module="httpExample">
 
   
@@ -1086,7 +1091,7 @@ default headers, withCredentials as well as request and response transformations
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example107/index.html" name="example-example107"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example104/index.html" name="example-example104"></iframe>
   </div>
 </div>
 

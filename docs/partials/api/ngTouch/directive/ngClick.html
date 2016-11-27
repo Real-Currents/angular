@@ -61,6 +61,11 @@ down (by a mouse click or touch) so you can restyle the depressed element if you
   <div class="usage">
   
     <ul>
+    
+      <li>as element:
+      (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).
+      <pre><code>&lt;ng-click&#10;  ng-click=&quot;expression&quot;&gt;&#10;...&#10;&lt;/ng-click&gt;</code></pre>
+      </li>
     <li>as attribute:
         <pre><code>&lt;ANY&#10;  ng-click=&quot;expression&quot;&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
       </li>
@@ -108,10 +113,10 @@ upon tap. (Event object is available as <code>$event</code>)</p>
   <h2 id="example">Example</h2><p>
 
 <div>
-  <plnkr-opener example-path="examples/example-example115"></plnkr-opener>
+  <plnkr-opener example-path="examples/example-example112"></plnkr-opener>
 
   <div class="runnable-example"
-      path="examples/example-example115"
+      path="examples/example-example112"
       module="ngClickExample"
       deps="angular-touch.js">
 
@@ -131,7 +136,7 @@ upon tap. (Event object is available as <code>$event</code>)</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example115/index.html" name="example-example115"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example112/index.html" name="example-example112"></iframe>
   </div>
 </div>
 

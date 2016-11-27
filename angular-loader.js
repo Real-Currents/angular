@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.5.6-local+sha.8c9fcd3
+ * @license AngularJS v1.5.10-local+sha.8f23419
  * (c) 2010-2016 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -7,7 +7,7 @@
 (function() {'use strict';
     function isFunction(value) {return typeof value === 'function';};
 
-/* global: toDebugString: true */
+/* global toDebugString: true */
 
 function serializeObject(obj) {
   var seen = [];
@@ -87,7 +87,7 @@ function minErr(module, ErrorConstructor) {
       return match;
     });
 
-    message += '\nhttp://errors.angularjs.org/1.5.6-local+sha.8c9fcd3/' +
+    message += '\nhttp://errors.angularjs.org/1.5.10-local+sha.8f23419/' +
       (module ? module + '/' : '') + code;
 
     for (i = SKIP_INDEXES, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {

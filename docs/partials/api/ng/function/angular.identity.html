@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/master/src/Angular.js?message=docs(angular.identity)%3A%20describe%20your%20change...#L439' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/master/src/Angular.js?message=docs(angular.identity)%3A%20describe%20your%20change...#L438' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/master/src/Angular.js#L439' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/master/src/Angular.js#L438' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -25,6 +25,15 @@ functional style.</p>
 <pre><code class="lang-js">function transformer(transformationFn, value) {
   return (transformationFn || angular.identity)(value);
 };
+
+// E.g.
+function getResult(fn, input) {
+  return (fn || angular.identity)(input);
+};
+
+getResult(function(n) { return n * 2; }, 21);   // returns 42
+getResult(null, 21);                            // returns 21
+getResult(undefined, 21);                       // returns 21
 </code></pre>
 
 </div>

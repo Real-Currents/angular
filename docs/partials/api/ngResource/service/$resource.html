@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/master/src/ngResource/resource.js?message=docs($resource)%3A%20describe%20your%20change...#L62' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/master/src/ngResource/resource.js?message=docs($resource)%3A%20describe%20your%20change...#L76' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/master/src/ngResource/resource.js#L62' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/master/src/ngResource/resource.js#L76' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -11,7 +11,9 @@
   <h1 class="api-profile-header-heading">$resource</h1>
   <ol class="api-profile-header-structure naked-list step-list">
     
-  
+  <li>
+    <a href="api/ngResource/provider/$resourceProvider">- $resourceProvider</a>
+  </li>
 
     <li>
       - service in module <a href="api/ngResource">ngResource</a>
@@ -110,16 +112,20 @@ this:</p>
       </td>
       <td>
         <p>Default values for <code>url</code> parameters. These can be overridden in
-  <code>actions</code> methods. If a parameter value is a function, it will be executed every time
-  when a param value needs to be obtained for a request (unless the param was overridden).</p>
+  <code>actions</code> methods. If a parameter value is a function, it will be called every time
+  a param value needs to be obtained for a request (unless the param was overridden). The function
+  will be passed the current data value as an argument.</p>
 <p>  Each key value in the parameter object is first bound to url template if present and then any
   excess keys are appended to the url search query after the <code>?</code>.</p>
 <p>  Given a template <code>/path/:verb</code> and parameter <code>{verb:&#39;greet&#39;, salutation:&#39;Hello&#39;}</code> results in
   URL <code>/path/greet?salutation=Hello</code>.</p>
-<p>  If the parameter value is prefixed with <code>@</code> then the value for that parameter will be extracted
-  from the corresponding property on the <code>data</code> object (provided when calling an action method).
+<p>  If the parameter value is prefixed with <code>@</code>, then the value for that parameter will be
+  extracted from the corresponding property on the <code>data</code> object (provided when calling a
+  &quot;non-GET&quot; action method).
   For example, if the <code>defaultParam</code> object is <code>{someParam: &#39;@someProp&#39;}</code> then the value of
-  <code>someParam</code> will be <code>data.someProp</code>.</p>
+  <code>someParam</code> will be <code>data.someProp</code>.
+  Note that the parameter will be ignored, when calling a &quot;GET&quot; action method (i.e. an action
+  method that does not accept a request body)</p>
 
         
       </td>
@@ -148,8 +154,9 @@ your resource object.</li>
 <li><strong><code>method</code></strong> – {string} – Case insensitive HTTP method (e.g. <code>GET</code>, <code>POST</code>, <code>PUT</code>,
 <code>DELETE</code>, <code>JSONP</code>, etc).</li>
 <li><strong><code>params</code></strong> – {Object=} – Optional set of pre-bound parameters for this action. If any of
-the parameter value is a function, it will be executed every time when a param value needs to
-be obtained for a request (unless the param was overridden).</li>
+the parameter value is a function, it will be called every time when a param value needs to
+be obtained for a request (unless the param was overridden). The function will be passed the
+current data value as an argument.</li>
 <li><strong><code>url</code></strong> – {string} – action specific <code>url</code> override. The url templating is supported just
 like for the resource-level urls.</li>
 <li><strong><code>isArray</code></strong> – {boolean=} – If true then the returned object for this action is an array,
@@ -286,6 +293,13 @@ returned by the interceptor.</p>
 </li>
 <li><p><code>$cancelRequest</code>: If there is a cancellable, pending request related to the instance or
  collection, calling this method will abort the request.</p>
+<p>The Resource instances have these additional methods:</p>
+</li>
+<li><p><code>toJSON</code>: It returns a simple object without any of the extra properties added as part of
+the Resource API. This object can be serialized through <a href="api/ng/function/angular.toJson"><code>angular.toJson</code></a> safely
+without attaching Angular-specific fields. Notice that <code>JSON.stringify</code> (and
+<code>angular.toJson</code>) automatically use this method when serializing a Resource instance
+(see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#toJSON(">MDN</a>_behavior)).</p>
 </li>
 </ul>
 </td>

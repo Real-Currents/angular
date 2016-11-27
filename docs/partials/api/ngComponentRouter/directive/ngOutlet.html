@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/master/src/ngComponentRouter/Router.js?message=docs(ngOutlet)%3A%20describe%20your%20change...#L110' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/master/src/ngComponentRouter/Router.js?message=docs(ngOutlet)%3A%20describe%20your%20change...#L152' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/master/src/ngComponentRouter/Router.js#L110' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/master/src/ngComponentRouter/Router.js#L152' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -28,6 +28,15 @@
 
 
 
+<fieldset class="deprecated">
+  <legend>Deprecated API</legend>
+  <p>In an effort to keep synchronized with router changes in Angular 2, this implementation of the Component Router (ngComponentRouter module)
+has been deprecated and will not receive further updates.
+We are investigating backporting the Angular 2 Router to Angular 1, but alternatively, use the <a href="api/ngRoute"><code>ngRoute</code></a> module or community developed
+projects (e.g. <a href="https://github.com/angular-ui/ui-router">ui-router</a>).</p>
+
+</fieldset>
+
 
 <div>
   
@@ -46,6 +55,11 @@ restrict: AE.</li>
   <div class="usage">
   
     <ul>
+    
+      <li>as element:
+      (This directive can be used as custom element, but be aware of <a href="guide/ie">IE restrictions</a>).
+      <pre><code>&lt;ng-outlet&gt;&#10;...&#10;&lt;/ng-outlet&gt;</code></pre>
+      </li>
     <li>as attribute:
         <pre><code>&lt;ANY&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
       </li>

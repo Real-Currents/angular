@@ -49,8 +49,8 @@ context.name = &#39;Angular&#39;;
 expect(exp(context)).toEqual(&#39;Hello Angular!&#39;);
 </code></pre>
 <p><code>allOrNothing</code> is useful for interpolating URLs. <code>ngSrc</code> and <code>ngSrcset</code> use this behavior.</p>
-<p>####Escaped Interpolation
-$interpolate provides a mechanism for escaping interpolation markers. Start and end markers
+<h4 id="escaped-interpolation">Escaped Interpolation</h4>
+<p>$interpolate provides a mechanism for escaping interpolation markers. Start and end markers
 can be escaped by preceding each of their characters with a REVERSE SOLIDUS U+005C (backslash).
 It will be rendered as a regular start/end marker, and will not be interpreted as an expression
 or binding.</p>
@@ -69,10 +69,10 @@ when otherwise untrusted data is used by a directive.</p>
 <p>
 
 <div>
-  <plnkr-opener example-path="examples/example-example108"></plnkr-opener>
+  <plnkr-opener example-path="examples/example-example105"></plnkr-opener>
 
   <div class="runnable-example"
-      path="examples/example-example108">
+      path="examples/example-example105">
 
   
     <div class="runnable-example-file" 
@@ -83,7 +83,7 @@ when otherwise untrusted data is used by a directive.</p>
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example108/index.html" name="example-example108"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-example105/index.html" name="example-example105"></iframe>
   </div>
 </div>
 
@@ -93,6 +93,29 @@ when otherwise untrusted data is used by a directive.</p>
 </div>
 
 
+
+<h2 id="known-issues">Known Issues</h2>
+<div class="known-issue">
+  <p>It is currently not possible for an interpolated expression to contain the interpolation end
+symbol. For example, <code>{{ &#39;}}&#39; }}</code> will be incorrectly interpreted as <code>{{ &#39; }}</code> + <code>&#39; }}</code>, i.e.
+an interpolated expression consisting of a single-quote (<code>&#39;</code>) and the <code>&#39; }}</code> string.</p>
+  <hr>
+</div>
+<div class="known-issue">
+  <p>All directives and components must use the standard <code>{{</code> <code>}}</code> interpolation symbols
+in their templates. If you change the application interpolation symbols the <a href="api/ng/service/$compile"><code>$compile</code></a>
+service will attempt to denormalize the standard symbols to the custom symbols.
+The denormalization process is not clever enough to know not to replace instances of the standard
+symbols where they would not normally be treated as interpolation symbols. For example in the following
+code snippet the closing braces of the literal object will get incorrectly denormalized:</p>
+<pre><code>&lt;div data-context=&#39;{&quot;context&quot;:{&quot;id&quot;:3,&quot;type&quot;:&quot;page&quot;}}&quot;&gt;
+</code></pre>
+<p>The workaround is to ensure that such instances are separated by whitespace:</p>
+<pre><code>&lt;div data-context=&#39;{&quot;context&quot;:{&quot;id&quot;:3,&quot;type&quot;:&quot;page&quot;} }&quot;&gt;
+</code></pre>
+<p>See <a href="https://github.com/angular/angular.js/pull/14610#issuecomment-219401099">https://github.com/angular/angular.js/pull/14610#issuecomment-219401099</a> for more information.</p>
+  
+</div>
 
 
 
